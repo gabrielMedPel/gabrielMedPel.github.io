@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake Game</title>
+  <style>
+    html,
+    body {
+      background-color: #000;
+      height: 100%;
+    }
+
+    body {
+      background: #222;
+      background: radial-gradient(#333, rgb(61, 61, 61));
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #fff;
+      font: 100%/1.5 sans-serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+
+    .score {
+      color: rgb(255, 0, 0);
+      text-shadow: 0 0 8px rgb(255, 79, 79);
+      font-size: 30px;
+      font-weight: bold;
+      padding-top: 5px;
+      text-align: center;
+    }
+
+    .points {
+      color: rgb(255, 0, 0);
+      text-shadow: 0 0 10px rgb(255, 105, 105);
+
+      font-size: 30px;
+      font-weight: bold;
+      padding-top: 5px;
+      text-align: center;
+    }
+
+    #txtGameOver {
+      width: 600px;
+      height: 500px;
+      display: none;
+      background: red;
+      border: 2px dotted black;
+      color: black;
+      text-align: center;
+      margin: auto;
+      font-size: 50px;
+      font-weight: 600;
+      padding-top: 200px;
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="points">Points: <span id="points" class="score"> 0</span></div>
+  <div id="txtGameOver">YOU DIED!!</div>
+
+  <canvas id="stage" width="600" height="600"></canvas>
+  <script>
+    window.onload = function () {
+
+      var stage = document.getElementById('stage');
+      var ctx = stage.getContext("2d");
+      document.addEventListener("keydown", keyPush);
+      setInterval(game, 90);
+
+      const vel = 1;
+
+      var vx = 1
+      var vy = 0;
+      var px = 10;
+      var py = 10;
+      var tp = 30;
+      var qp = 20;
+      var ax = ay = 15;
+
+      var trail = [];
+      tail = 2;
+      var gameOver = false
+      function game() {
+        px += vx;
+        py += vy;
+        if (px < 0) {
+          px = qp - 1;
+        }
+        if (px > qp - 1) {
+          px = 0;
+        }
+        if (py < 0) {
+          py = qp - 1;
+        }
+        if (py > qp - 1) {
+          py = 0;
+        }
+
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, stage.width, stage.height);
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(ax * tp, ay * tp, tp, tp);
+
+        ctx.fillStyle = "gray";
+        for (var i = 0; i < trail.length; i++) {
+          ctx.fillRect(trail[i].x * tp, trail[i].y * tp, tp - 1, tp - 1);
+          if (trail[i].x == px && trail[i].y == py) {
+            txtGameOver.style.display = 'block'
+
+            setTimeout(function () {
+              txtGameOver.style.display = 'none'
+
+
+            }, 2000)
+            points.innerHTML = 0
+            vx = 1
+            vy = 0;
+            px = 10
+            py = 10
+            tail = 2;
+          }
+        }
+
+        trail.push({ x: px, y: py })
+        while (trail.length > tail) {
+          trail.shift();
+        }
+
+        if (ax == px && ay == py) {
+          points.innerHTML++
+          tail++;
+          ax = Math.floor(Math.random() * qp);
+          ay = Math.floor(Math.random() * qp);
+        }
+
+      }
+
+      function keyPush(event) {
+
+        switch (event.keyCode) {
+          case 37: // Left
+            if (vx != vel && vy != 0) {
+              vx = -vel;
+              vy = 0;
+            }
+
+            break;
+          case 38: // up
+            if (vx != 0 && vy != vel) {
+              vx = 0;
+              vy = -vel;
+            }
+
+            break;
+          case 39: // right
+            if (vx != -vel && vy != 0) {
+              vx = vel;
+              vy = 0;
+            }
+
+            break;
+          case 40: // down
+            if (vx != 0 && vy != -vel) {
+              vx = 0;
+              vy = vel;
+            }
+
+            break;
+          default:
+
+            break;
+        }
+
+
+      }
+
+    }
+
+
+
+  </script>
+</body>
+
+</html>

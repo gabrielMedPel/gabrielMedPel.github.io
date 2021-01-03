@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Start Test </title>
+    <meta name="author" content="GabrielMP" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        #interface {
+            box-shadow: 0px 0px 10px gray;
+            color: black;
+            width: 800px;
+            height: 100%;
+        }
+
+        .textDec {
+            background: red;
+            font-weight: 900;
+        }
+
+        .textDec2 {
+            background: green;
+            font-weight: 900;
+        }
+
+        #txtPt {
+            position: fixed;
+            width: 150px;
+            height: 100px;
+            padding: 20px;
+            top: 100px;
+            left: 100px;
+            border: 2px dotted black;
+        }
+
+        #start {
+            display: none;
+            margin: auto;
+        }
+
+        #next {
+            display: none;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="interface" class="container border text-center bg-warning">
+        <br>
+        <h1>Math Exercise</h1>
+        <hr />
+        <br>
+        Choose the level you want :
+        <select name="" id="level">
+            <option value="10">Easy 1 - 10</option>
+            <option value="100">Medium 1 - 100</option>
+            <option value="1000">Hard 1 - 1000</option>
+        </select>
+        <br><br>
+        <div id="opr">
+            Choose the operators you want : <br>
+            <input type="checkbox" onclick="checkDisabled()" name="" id="plus" value="+"> + Addiction<br>
+            <input type="checkbox" onclick="checkDisabled()" name="" id="minus" value="-"> - Subtraction<br>
+            <input type="checkbox" onclick="checkDisabled()" name="" id="mult" value="*"> * Multiplication<br>
+            <input type="checkbox" onclick="checkDisabled()" name="" id="divd" value="/"> / Division<br>
+            <br>
+            <input id="start" type="button" value="Start" onclick="resetExercise()">
+            <br></div>
+        <hr><br>
+        <div id="allInter" style="display:none;">
+            <span id="num1"></span>
+            <span id="op"></span>
+            <span id="num2"></span>
+            <span> =</span>
+            <input type="number" id="sum" />
+            <br /><br />
+            <button id="check" onclick="checkAnswer()">Check your answer</button>
+            <br /><br /></div>
+        <button id="next" onclick="resetExercise()">Next Exercise</button>
+        <hr />
+        <br />
+        <div id="message"></div>
+        <br>
+        <hr><br>
+        <div id="txtPt"></div>
+
+
+    </div>
+    <script>
+        var plus = document.getElementById('plus')
+        var minus = document.getElementById('minus')
+        var mult = document.getElementById('mult')
+        var divd = document.getElementById('divd')
+        var startCheck = document.getElementById('start')
+        var next = document.getElementById('next')
+
+        function checkDisabled() {
+            startCheck.style.display = 'block'
+            next.style.display = 'block'
+
+
+            if (plus.checked == false &&
+                minus.checked == false &&
+                mult.checked == false &&
+                divd.checked == false) {
+                startCheck.style.display = 'none'
+                next.style.display = 'none'
+
+            }
+        }
+        var points = 0
+        var opr = []
+        var array = []
+
+
+        function checkAnswer() {
+
+            var ans = eval(num1.innerHTML + op.innerHTML + num2.innerHTML)
+            console.log(ans)
+            var uAns = sum.value
+
+            if (uAns == "") {
+                message.innerHTML = "You need to put some number first!"
+            } else if (uAns == ans) {
+                message.innerHTML = "<img style='width: 300px' src='https://cdn.lowgif.com/full/fd9e7c7181fb337a-dancing-celebration-win-gif-on-gifer-by-ishnron.gif'><br><br><audio autoplay src='sounds/win.wav'></audio><span class='textDec2'> YOU ARE RIGHT!!</span>"
+                points += 10
+                txtPt.innerHTML = "You have " + points + " points!"
+                document.getElementById("allInter").style.display = "none"
+                document.getElementById("opr").style.display = "none"
+
+            } else {
+                message.innerHTML = "<img style='width: 300px' src='https://media1.tenor.com/images/76e15b00a8e620b4ea7fda21a11df5c4/tenor.gif?itemid=14034090'><br><br><audio autoplay src='sounds/gameover.mp3'></audio><span class='textDec'>No, Keep trying!</span>"
+                points += 3
+                txtPt.innerHTML = "You have " + points + " points!"
+                document.getElementById("allInter").style.display = "none"
+                document.getElementById("opr").style.display = "none"
+            }
+        }
+
+        function getInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function resetExercise() {
+
+            document.getElementById("allInter").style.display = "block"
+            document.getElementById("opr").style.display = "block"
+            array = []
+            num1.innerHTML = getRamdonNumber(Number(level.value))
+            num2.innerHTML = getRamdonNumber(Number(level.value))
+
+            sum.value = ""
+            message.innerHTML = ""
+            sum.focus()
+            var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                array.push(checkboxes[i].value)
+            }
+            console.log(array)
+            var rNumber = getInt(0, (array.length))
+            console.log(rNumber)
+            op.innerHTML = array[rNumber]
+
+
+        }
+
+        function getRamdonNumber(num) {
+            return Math.floor((Math.random() * num) + 1)
+        }
+    </script>
+</body>
+
+</html>

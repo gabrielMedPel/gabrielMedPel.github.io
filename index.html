@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Coda&family=Permanent+Marker&family=Share+Tech+Mono&family=Source+Sans+Pro&family=Titillium+Web:ital,wght@1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<body>
+
+    <header id="myHeader">
+
+        <section id="myVideo">
+            <video src="images/Clouds.mp4" autoplay="" muted="" loop=""></video>
+        </section>
+        <div id="txtHeader">
+
+            <h1>Gabriel M P </h1>
+            <h3>Android & Iphone Developer</h3>
+            <h4>Welcome to my Site and Portfolio</h4>
+        </div>
+        <div><audio id="music" src="music/music.mp3" controls autoplay loop></audio></div>
+        <div><audio id="sfxON" src="music/sfxON.wav"></audio></div>
+        <div><audio id="sfxOFF" src="music/sfxOFF.wav"></audio></div>
+
+        <nav id="menu">
+
+            <a href="index.html" class="logo">GabsMP</a>
+            <ul id="listaMenu">
+                <li> <a href="#interface">About me</a></li>
+                <li> <a href="#x1">My Projects</a></li>
+                <li> <a href="#x2">Contact me</a></li>&nbsp;&nbsp;&nbsp;
+                <li id="limusic">
+                    <label>
+                        <input type="checkbox" name="" id="player" onclick="playMusic()">
+                        <span class="check"></span>
+                        <i class="fa fa-volume-up" aria-hidden="true"></i>
+
+                    </label>
+
+                </li>
+
+            </ul>
+
+
+
+        </nav>
+
+
+    </header>
+    <div id="interface">
+        <img id="foto" src="images/Gabs.jpg" alt="foto">
+
+
+        <section id="aboutMe">
+            <h1>About Me</h1>
+            <p>I am an application developer for Android and IOS. Born in Brazil, actually live in Ashdod - Israel. I
+                started to be interested in
+                technology in college, since then I haven't stopped studying. I Completed the application development
+                course at HackerU, where I specialized in this subject. I also master HTML, CSS, Javascript, Bootstrap,
+                JQuery and others. <br id=""> On my website you can learn a little about me, access my most relevant
+                projects and get in touch with me. Thank you very much.</p>
+        </section>
+
+        <br id="x1">
+        <br><br><br><br>
+        <h1 id="myProjecth1">My Projects <br><span id="soundOnWarning">(Try hovering over projects when sound is
+                On)</span></h1>
+        <br>
+        <div id="projects">
+
+            <div class="box">
+                <div class="imgBx">
+                    <a href="myProjects/filters/filters.html" target="_blank">
+                        <img src="images/pizza.jpg" alt="img filters"></a>
+                </div>
+                <div class="content">
+                    <h3>Filters & Green Screen</h3>
+                    <p><img src="images/html.png" alt=""><img src="images/css.png" alt=""><img src="images/js.png"
+                            alt=""><img src="images/jq.png" alt=""></p>
+                </div>
+
+            </div>
+
+            <div class="box">
+                <div class="imgBx">
+                    <a href="myProjects/Math/MathExercise.html" target="_blank">
+                        <img src="images/math.jpg" alt="img MathExercise"></a>
+                </div>
+                <div class="content">
+                    <h3>Math Exercise</h3>
+                    <p><img src="images/html.png" alt=""><img src="images/css.png" alt=""><img src="images/js.png"
+                            alt=""><br><img src="images/bs.png" alt="">&nbsp;&nbsp;<img src="images/musicIcon.png"
+                            alt=""></p>
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="box">
+                <div class="imgBx">
+                    <a href="myProjects/JDV/TicTacToe.html" target="_blank">
+                        <img src="images/jdv.jpg" alt="img jogo da velha"></a>
+                </div>
+                <div class="content">
+                    <h3>Tic Tae Toe</h3>
+                    <p><img src="images/html.png" alt=""><img src="images/css.png" alt=""><img src="images/js.png"
+                            alt=""><img src="images/bs.png" alt="">&nbsp;&nbsp;<img src="images/musicIcon.png"
+                            alt=""><br>
+                    <div id="ls">Local Storage</div>
+                    </p>
+                </div>
+
+            </div>
+
+            <br>
+
+
+            <div class="box">
+                <div class="imgBx">
+                    <a href="myProjects/Relogio/Watch.html" target="_blank">
+                        <img src="images/rlg.jpg" alt="img Relogio"></a>
+                </div>
+                <div class="content">
+                    <h3>Analog and Digital Watch</h3>
+                    <p><img src="images/html.png" alt=""><img src="images/css.png" alt=""><img src="images/js.png"
+                            alt="">&nbsp;&nbsp;<img src="images/musicIcon.png" alt=""><br></p>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+            <div class="box">
+                <div class="imgBx">
+                    <a href="myProjects/Musica/music.html" target="_blank">
+                        <img src="images/musica.jpg" alt="img Musica"></a>
+                </div>
+                <div class="content">
+                    <h3>Music Game</h3>
+                    <p><img src="images/html.png" alt=""><img src="images/css.png" alt=""><img src="images/js.png"
+                            alt=""><br><img src="images/bs.png" alt="">&nbsp;&nbsp;<img src="images/jq.png"
+                            alt="">&nbsp;&nbsp;<img src="images/musicIcon.png" alt=""></p>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="box">
+                <div class="imgBx">
+                    <a href="myProjects/Cobrinha/cobra.html" target="_blank">
+                        <img src="images/cobra.jpg" alt="img cobra"></a>
+                </div>
+                <div class="content">
+                    <h3>Snake Game</h3>
+                    <p> <img src="images/html.png" alt=""><img src="images/css.png" alt=""><img src="images/js.png"
+                            alt=""></p>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+        <br id="x2">
+        <br><br><br><br>
+
+
+        <div id="contact">
+            <h2>Let me a Message!</h2>
+            <div class="mySection" id="forms">
+
+                <br>
+                <div id="uMessage"></div>
+                <form id="myForm">
+                    <div class="row">
+                        <div class="col">
+                            <input id="firstName" type="text" class="form-control " placeholder="First name">
+                        </div>
+                        <div class="col">
+                            <input id="lastName" type="text" class="form-control" placeholder="Last name">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input id="phone" type="number" class="form-control" placeholder="Phone Number">
+                        </div>
+                        <div class="col">
+                            <input id="email" type="text" class="form-control" placeholder="E-mail">
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <textarea name="" class="form-control" id="uText" cols="67" rows="7"
+                            placeholder="Your Message..."></textarea>
+                    </div>
+
+
+                </form>
+                <input onclick="check()" type="button" value="Send">
+
+                <br><br>
+                <div id="findMe">
+                    <br>
+                    <h2>Where to find me?</h2><br>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3390.8548104517613!2d34.65068681440044!3d31.801706640379326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502a3100410d1ab%3A0xb5df2dd4ccf9d115!2sHaRav%20Maimon%2015%2C%20Ashdod!5e0!3m2!1spt-BR!2sil!4v1593596591353!5m2!1spt-BR!2sil"
+                        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""
+                        aria-hidden="false" tabindex="0"></iframe>
+
+
+                </div>
+            </div>
+            <br>
+
+
+            <footer>
+                <p>Designed By GabrielMP &trade; &reg;</p>
+                <a href="https://www.facebook.com/gabriel.ribeiro.18488" target="_blank"><img src="images/fb.png" alt=""
+                        class="icone"></a>
+
+                <a href="https://www.instagram.com/gabrielmp246/?hl=pt" target="_blank"><img src="images/inst.png"
+                        alt="" class="icone"></a>
+
+            </footer>
+
+
+
+
+
+
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"
+                integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/color/jquery.color-2.2.0.js"
+                integrity="sha256-gvMJWDHjgDrVSiN6eBI9h7dRfQmsTTsGU/eTT8vpzNg=" crossorigin="anonymous"></script>
+
+            <script src="script/script.js"></script>
+
+        </div>
+</body>
+
+</html>

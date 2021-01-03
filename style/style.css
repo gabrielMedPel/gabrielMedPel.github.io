@@ -1,0 +1,479 @@
+body{
+    background: #252527 !important;
+    height: 100%;
+    margin: 0;
+    
+}
+
+
+section video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -1000;
+
+}
+
+
+#interface{
+    width: 1100px;
+    height: 100%;
+    margin: 0px auto 0px auto;
+    /* background: #373461; */
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(201, 201, 201, 0.644);
+font-family: 'Source Sans Pro', sans-serif;
+z-index: -100;
+
+
+}
+h1, h2{
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+#myHeader{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; */
+    padding: 100px;
+    
+}
+#limusic {
+    position: relative;
+    list-style: none;
+    width: 100px;
+    text-align: center;
+}
+
+#limusic label {
+    position: relative;
+
+}
+
+#limusic label i,
+#limusic label input[type="checkbox"] {
+    display: block;
+    text-align: center;
+
+}
+
+#limusic label i {
+    font-size: 30px;
+    color: rgb(110, 110, 110);
+    transition: 0.5s;
+
+}
+
+#limusic label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+#limusic label .check {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(#000, #333);
+    border-radius: 50%;
+    margin: 10px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+
+}
+
+#limusic label .check::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1b1b1b;
+    transition: 0.5s;
+    z-index: 3;
+}
+
+#limusic label .check::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    background: #222;
+    border-radius: 50%;
+    z-index: 2;
+    border: 2px solid #161616;
+}
+
+#limusic label input[type="checkbox"]:checked~.check:before {
+    background: rgba(0, 176, 255, 1);
+    box-shadow: 0 0 10px rgba(0, 176, 255, 1),
+        0 0 20px rgba(0, 176, 255, 1),
+        0 0 25px rgba(0, 176, 255, 1),
+        0 0 15px rgba(0, 176, 255, 1);
+
+}
+
+#foto{
+    width: 180px;
+    position: absolute;
+ margin-top: 160px;
+ margin-left: -500px;
+ border-radius: 10px;
+ box-shadow: 0 0 10px black;
+}
+
+#txtHeader{
+    height: 300px;
+    width: 700px;
+    margin: auto;
+    top: -30px;
+    font-family: 'Poppins', sans-serif;    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    padding: 30px; 
+    display: none;
+    border-radius: 90px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+    z-index: 100;
+    
+    
+     
+}
+#txtHeader h1,h3,h4{
+    font-size: 90px;
+}
+#menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.6s;
+    padding: 40px 100px;
+    z-index: 1000;
+}
+#music{
+    display: none;
+}
+label{
+    position: relative;
+}
+
+.playerBtn{
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(#000, #333);
+    border-radius: 50%;
+}
+#menu.sticky{
+    padding: 5px 100px;
+    background: #fff;
+
+}
+.logo{
+    position: relative;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+}
+.logo:hover{
+    text-decoration: none;
+    color: #000;
+}
+#menu ul{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+
+}
+#menu ul li{
+    position: relative;
+    list-style: none;
+
+}
+#menu ul li a{
+    position: relative;
+    margin: 0 15px;
+    text-decoration: none;
+    color: #fff;
+    letter-spacing: 2px;
+    font-weight: 500;
+    transition: 0.6s;
+
+}
+#menu ul li a:hover{
+    color: #000;
+    text-shadow: 0 0 5px white;
+}
+#menu.sticky .logo,
+#menu.sticky ul li a{
+    color: #000;
+
+}
+#menu.sticky .logo:hover,
+#menu.sticky ul li a:hover{
+    color: white;
+    text-shadow: 0 0 5px black;
+}
+
+
+
+#aboutMe{
+    height: 500px;
+    text-align: center;
+    padding-right: 50px;
+    padding-left: 300px;
+    padding-bottom: 50px;
+    padding-top: 160px;
+
+    color: rgb(255, 255, 255);
+    border-bottom: 1px solid #fff;
+    
+
+}
+#aboutMe h1{
+    color: rgb(209, 209, 209);
+}
+#projects{
+    border-bottom: 1px solid #fff;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    
+    
+    
+}
+#myProjecth1{
+    color: rgb(209, 209, 209);
+}
+#projects a{
+    color: #0b0c10 ;
+}
+#projects a:hover{
+    text-decoration: none;
+}
+.box{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+    transition: 0.5s;
+    background: #060c21;
+    border-radius: 10px;
+
+
+
+}
+.box:hover{
+    height: 300px;
+}
+.box .imgBx{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    
+
+    
+
+}
+.box .imgBx img{
+    max-width: 100%;
+    opacity: 0.1;
+    transition: 0.5s;
+    border-radius: 10px;
+
+    
+}
+.box:hover .imgBx img{
+    opacity: 1;
+}
+.box:before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: #fff ;
+    border-radius: 10px;
+
+    z-index: -1;
+}
+.box:after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: white ;
+    filter: blur(40px);
+    z-index: -2;
+    
+    
+}
+.box:before, 
+.box:after{
+    background: linear-gradient(235deg, #fc4040, #010615,#d4d000);
+    
+}
+.box:nth-child(2)::before, 
+.box:nth-child(2)::after{
+    background: linear-gradient(235deg, #e5ff00, #010615,#5347f8);
+
+
+    
+}
+.box:nth-child(3)::before, 
+.box:nth-child(3)::after{
+    background: linear-gradient(235deg, #15ff00, #010615,#c300ff);
+
+    
+}
+.box:nth-child(7)::before, 
+.box:nth-child(7)::after{
+    background: linear-gradient(235deg, #00fff2, #010615,#fa4242);
+
+    
+}
+.box:nth-child(5)::before, 
+.box:nth-child(5)::after{
+    background: linear-gradient(235deg, #4845ff, #010615,#ff009d);
+
+    
+}
+.box:nth-child(6)::before, 
+.box:nth-child(6)::after{
+    background: linear-gradient(235deg, #8400ff, #010615,#00d9ff);
+
+    
+}
+.box .content{
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    bottom: 5px;
+    height: 100px;
+    background:#060c2191;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.5s;
+    text-align: center;
+    border-radius: 10px;
+
+    
+
+
+}
+.box .content p{
+    color: rgb(175, 175, 175);
+}
+.box:hover .content{
+    opacity: 1;
+}
+.box .content h3{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 1px;
+
+}
+
+#contact h2{
+    color: rgb(209, 209, 209);
+}
+#myForm{
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 50px;
+    
+}
+#findMe{
+    border-top: 1px solid #fff;
+}
+iframe{
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.644);
+}
+
+footer{
+    padding: 10px;
+    border-top: 1px solid #fff;
+    background-color:  rgb(151, 151, 151) ;
+    font-family: 'Share Tech Mono', monospace;
+}
+.icone{
+    width: 30px;
+    height: 30px;
+    border-radius: 30%;
+}
+footer a{
+    color: rgb(51, 51, 51);
+}
+footer a:hover{
+    color: black;
+    
+}
+
+
+#ls{
+    background: yellow;
+    color: black;
+    display: inline;
+    font-weight: 800;
+    border-radius: 10%;
+}
+#soundOnWarning{
+    font-size: 15px;
+}
+
+
+
+
+
+
+ 
+
+

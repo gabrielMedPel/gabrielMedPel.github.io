@@ -1,0 +1,571 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Tik Tae Toe Game </title>
+    <meta name="author" content="Gal Lavi" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #interface {
+            box-shadow: 0px 0px 10px rgb(77, 77, 77);
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+
+
+
+        }
+
+        #tab {
+            box-shadow: 0px 0px 5px rgb(77, 77, 77);
+            height: 340px;
+            width: 95%;
+            display: none;
+
+
+        }
+
+
+
+        .row {
+            height: 85px;
+            margin-top: 10px;
+
+
+        }
+
+        img {
+            width: 70px;
+            height: 60px;
+        }
+
+        .boxes {
+            z-index: 1;
+        }
+
+        svg {
+            position: relative;
+            top: -290px;
+            left: auto;
+
+        }
+
+        #turns {
+            display: none;
+        }
+
+        #pNames {
+            font-weight: 500;
+        }
+
+
+
+
+        #newGameBtn {
+            text-align: center;
+        }
+
+        .winner {
+            border: 2px dotted green;
+            background-color: lightgreen;
+            font-weight: 900;
+            height: 100px;
+            font-size: larger;
+            padding-top: 30px;
+            color: black;
+        }
+
+        .tie {
+            border: 2px dotted rgb(128, 0, 0);
+            background-color: rgb(207, 127, 127);
+            font-weight: 900;
+            height: 100px;
+            font-size: larger;
+            padding-top: 30px;
+            color: black;
+        }
+
+        .placar {
+            width: 250px;
+            height: 141px;
+            position: absolute;
+
+            display: inline-block;
+            box-shadow: 0 0 10px rgb(83, 83, 83);
+
+
+        }
+
+        #newGameBtn {
+            width: 250px;
+            height: 141px;
+            position: absolute;
+            display: inline-block;
+            left: 38%;
+            z-index: 100;
+
+
+
+        }
+
+        #newGameBtn a {
+            box-shadow: 0 0 10px rgb(83, 83, 83);
+        }
+
+        .placarRecord {
+            width: 250px;
+            height: 141px;
+            position: absolute;
+            display: inline-block;
+            right: 0;
+            box-shadow: 0 0 10px rgb(83, 83, 83);
+
+
+        }
+
+        #bottonScores {
+            width: 900px;
+            height: 145px;
+
+            position: absolute;
+            bottom: 0;
+
+
+        }
+
+
+        #playerName {
+            width: 150px;
+            height: 80px;
+            display: inline-block;
+            position: absolute;
+            left: 10px;
+            border-right: 1px solid black;
+        }
+
+        #playerScore {
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="bottonScores">
+        <div class="border bg-warning text-center placar">
+            <h5>Score Board</h5>
+            <hr>
+            <div id="playerName">
+                <h6>Player Name</h6>
+                <p><span id="player1Name"></span> <br> <span id="player2Name"></span></p>
+
+            </div>
+            <div id="playerScore">
+                <h6>Score</h6>
+                <p><span id="player1Score">0</span> <br> <span id="player2Score">0</span></p>
+            </div>
+
+        </div>
+        <div id="newGameBtn">
+            <a href="TicTacToe.html" class="btn btn-primary">Change Players</a>
+        </div>
+        <div class="border bg-danger text-center placarRecord">
+            <h5>HighScores</h5>
+            <hr>
+            <div id="playerName">
+                <h6>Player Name</h6>
+                <p><span id="hs1Name"></span> <br> <span id="hs2Name"></span></p>
+
+            </div>
+            <div id="playerScore">
+                <h6>Score</h6>
+                <p><span id="hs1Score">0</span> <br> <span id="hs2Score">0</span></p>
+            </div>
+
+        </div>
+    </div>
+    <div id="interface" class="border bg-primary text-center">
+        <h1> Tik Tae Toe </h1>
+        <hr />
+        <div id="pNames">Name Player 1: <input type="text" name="" id="player1"><br> Name Player 2: <input type="text"
+                name="" id="player2"><br>
+            <br><input type="button" value="Start" onclick="startGame()"></div>
+        <h4 id="turns">Players's Turn: <span id="playerTurn"></span></h4>
+        <hr>
+        <div id="tab" class="container border bg-white">
+            <div class="row">
+                <div id="box1" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+                <div id="box2" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+                <div id="box3" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+
+            </div>
+
+            <div class="row">
+                <div id="box4" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+                <div id="box5" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+                <div id="box6" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+
+            </div>
+            <div class="row">
+                <div id="box7" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+                <div id="box8" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+                <div id="box9" onclick="markX(this)"
+                    class="col m-4  text-center w-100 p-3 h-100 d-inline-block bg-white boxes"></div>
+
+            </div>
+            <svg height="350" width="400">
+                <line x1="130" y1="20" x2="130" y2="340" style="stroke:rgb(0, 0, 0);stroke-width:3" />
+                <line x1="265" y1="20" x2="265" y2="340" style="stroke:rgb(0, 0, 0);stroke-width:3" />
+                <line x1="0" y1="130" x2="400" y2="130" style="stroke:rgb(0, 0, 0);stroke-width:3" />
+                <line x1="0" y1="225" x2="400" y2="225" style="stroke:rgb(0, 0, 0);stroke-width:3" />
+
+            </svg>
+
+        </div>
+    </div>
+
+    <script>
+        // localStorage.clear()
+        var hs1Score = document.getElementById('hs1Score')
+        var hs2Score = document.getElementById('hs2Score')
+        var hs1Name = document.getElementById('hs1Name')
+        var hs2Name = document.getElementById('hs2Name')
+
+
+        hs1Score.innerHTML = Number(localStorage.getItem('highScore1'))
+        hs2Score.innerHTML = Number(localStorage.getItem('highScore2'))
+        hs1Name.innerHTML = localStorage.getItem('highScorePlayer1')
+        hs2Name.innerHTML = localStorage.getItem('highScorePlayer2')
+        var boxes = document.getElementsByClassName('boxes')
+        var player1 = null
+        var player2 = null
+        var playerTurn = document.getElementById('playerTurn')
+
+
+        function startGame() {
+            player1Score.innerHTML = 0
+            player2Score.innerHTML = 0
+            player1Name.innerHTML = ""
+            player2Name.innerHTML = ""
+            var pNames = document.getElementById('pNames')
+            var tab = document.getElementById('tab')
+            var turns = document.getElementById('turns')
+            pNames.style.display = 'none'
+            tab.style.display = 'block'
+            turns.style.display = 'block'
+            player1 = document.getElementById('player1').value
+            player2 = document.getElementById('player2').value
+            playerTurn.innerHTML = player1
+            player1Name.innerHTML = player1
+            player2Name.innerHTML = player2
+            newGameBtn.innerHTML += '<audio autoplay loop id="music" src="sounds/bgMusic.wav"></audio>'
+            music.volume = 0.3
+
+
+        }
+
+
+
+
+        var gameOver = false
+        var countAct = 0
+        function markX(elem) {
+            if (elem.innerHTML != "") {
+                return
+            }
+            countAct++
+            if (countAct % 2 != 0) {
+                elem.innerHTML = "<img src='images/x.jpg'><audio autoplay src='sounds/sfx1.wav'></audio>"
+            } else {
+                elem.innerHTML = "<img src='images/O.jpg'><audio autoplay src='sounds/sfx2.wav'></audio>"
+            }
+
+            var strId = elem.id
+
+            var numId = Number(strId[3])
+
+
+            if (countAct > 4) {
+                switch (numId) {
+                    case 1:
+                        checkWin(1, 2, 3);
+                        checkWin(1, 4, 7);
+                        checkWin(1, 5, 9);
+                        break;
+                    case 2:
+                        checkWin(1, 2, 3);
+                        checkWin(5, 2, 8);
+                        break;
+                    case 3:
+                        checkWin(1, 2, 3);
+                        checkWin(3, 6, 9);
+                        checkWin(3, 5, 7);
+                        break;
+                    case 4:
+                        checkWin(1, 4, 7);
+                        checkWin(4, 5, 6);
+
+                        break;
+                    case 5:
+                        checkWin(4, 5, 6);
+                        checkWin(2, 5, 8);
+                        checkWin(1, 5, 9);
+                        checkWin(3, 5, 7);
+                        break;
+                    case 6:
+                        checkWin(3, 6, 9);
+                        checkWin(4, 5, 6);
+
+                        break;
+                    case 7:
+                        checkWin(1, 4, 7);
+                        checkWin(7, 8, 9);
+                        checkWin(3, 5, 7);
+                        break;
+                    case 8:
+                        checkWin(7, 8, 9);
+                        checkWin(8, 5, 2);
+
+                        break;
+                    case 9:
+                        checkWin(1, 5, 9);
+                        checkWin(7, 8, 9);
+                        checkWin(3, 6, 9);
+
+                        break;
+
+
+                }
+
+            }
+            if (gameOver) {
+                return
+            }
+            if (playerTurn.innerHTML == player1) {
+                playerTurn.innerHTML = player2
+
+            } else {
+                playerTurn.innerHTML = player1
+
+            }
+
+
+
+        }
+
+
+        function checkWin(id1, id2, id3) {
+            var bestScore1 = hs1Score.innerHTML
+            var bestScore2 = hs2Score.innerHTML
+            var bestName1 = hs1Name.innerHTML
+            var bestName2 = hs2Name.innerHTML
+
+            var fullId1 = "box" + id1
+            var fullId2 = "box" + id2
+            var fullId3 = "box" + id3
+
+            var txt1 = document.getElementById(fullId1).innerHTML
+            var txt2 = document.getElementById(fullId2).innerHTML
+            var txt3 = document.getElementById(fullId3).innerHTML
+
+            if (txt1 == txt2 & txt1 == txt3) {
+                gameOver = true
+
+
+
+
+                setTimeout(function () {
+                    var pNames = document.getElementById('pNames')
+                    var tab = document.getElementById('tab')
+                    var turns = document.getElementById('turns')
+                    tab.style.display = 'none'
+                    turns.style.display = 'none'
+                    pNames.innerHTML = playerTurn.innerHTML + ', YOU WON!!!<audio autoplay src="sounds/win.wav"></audio>'
+
+                    pNames.className = 'winner'
+                    pNames.style.display = 'block'
+
+
+                    if (playerTurn.innerHTML == player1) {
+                        player1Score.innerHTML++
+                        if (player1Score.innerHTML > bestScore1) {
+                            bestScore1 = player1Score.innerHTML
+                            bestName1 = player1
+
+                        } else if (player1Score.innerHTML > bestScore2) {
+                            bestScore2 = player1Score.innerHTML
+                            bestName2 = player1
+                        }
+
+                    } else {
+                        player2Score.innerHTML++
+                        if (player2Score.innerHTML > bestScore1) {
+                            bestScore1 = player2Score.innerHTML
+                            bestName1 = player2
+                        } else if (player2Score.innerHTML > bestScore2) {
+                            bestScore2 = player2Score.innerHTML
+                            bestName2 = player2
+                        }
+
+                    }
+
+                    console.log(bestName1)
+                    console.log(bestScore1)
+
+                    console.log(bestName2)
+                    console.log(bestScore2)
+                    if (typeof (Storage) != "undefined") {
+                        localStorage.setItem('highScore1', bestScore1)
+                        localStorage.setItem('highScore2', bestScore2)
+                        localStorage.setItem('highScorePlayer1', bestName1)
+                        localStorage.setItem('highScorePlayer2', bestName2)
+                        hs1Name.innerHTML = localStorage.getItem('highScorePlayer1')
+                        hs2Name.innerHTML = localStorage.getItem('highScorePlayer2')
+                        hs1Score.innerHTML = localStorage.getItem('highScore1')
+                        hs2Score.innerHTML = localStorage.getItem('highScore2')
+
+                    } else {
+                        hs1Name.innerHTML = "Sorry, your Browser does not support Web Storage"
+                        hs2Name.innerHTML = "Sorry, your Browser does not support Web Storage"
+                        hs1Score.innerHTML = "Sorry, your Browser does not support Web Storage"
+                        hs2Score.innerHTML = "Sorry, your Browser does not support Web Storage"
+                    }
+
+
+                    box1.innerHTML = ''
+                    box2.innerHTML = ''
+                    box3.innerHTML = ''
+                    box4.innerHTML = ''
+                    box5.innerHTML = ''
+                    box6.innerHTML = ''
+                    box7.innerHTML = ''
+                    box8.innerHTML = ''
+                    box9.innerHTML = ''
+
+
+
+
+
+                }, 1000)
+                setTimeout(function () {
+                    var pNames = document.getElementById('pNames')
+                    var tab = document.getElementById('tab')
+                    var turns = document.getElementById('turns')
+                    tab.style.display = 'block'
+                    turns.style.display = 'block'
+                    gameOver = false
+
+                    pNames.className = ''
+                    pNames.style.display = 'none'
+                    if (playerTurn.innerHTML == player1) {
+                        playerTurn.innerHTML = player2
+
+                    } else {
+                        playerTurn.innerHTML = player1
+
+                    }
+
+                }, 3000)
+
+
+
+            }
+            checkTie()
+        }
+        function checkTie() {
+            if (box1.innerHTML != '' &&
+                box2.innerHTML != '' &&
+                box3.innerHTML != '' &&
+                box4.innerHTML != '' &&
+                box5.innerHTML != '' &&
+                box6.innerHTML != '' &&
+                box7.innerHTML != '' &&
+                box8.innerHTML != '' &&
+                box9.innerHTML != '') {
+                setTimeout(function () {
+                    var pNames = document.getElementById('pNames')
+                    var tab = document.getElementById('tab')
+                    var turns = document.getElementById('turns')
+                    tab.style.display = 'none'
+                    turns.style.display = 'none'
+                    pNames.innerHTML = 'IT IS A TIE!!!!<audio autoplay src="sounds/win.wav"></audio>'
+
+                    pNames.className = 'tie'
+                    pNames.style.display = 'block'
+
+
+
+
+
+
+
+
+                    box1.innerHTML = ''
+                    box2.innerHTML = ''
+                    box3.innerHTML = ''
+                    box4.innerHTML = ''
+                    box5.innerHTML = ''
+                    box6.innerHTML = ''
+                    box7.innerHTML = ''
+                    box8.innerHTML = ''
+                    box9.innerHTML = ''
+
+
+
+
+
+                }, 1000)
+                setTimeout(function () {
+                    var pNames = document.getElementById('pNames')
+                    var tab = document.getElementById('tab')
+                    var turns = document.getElementById('turns')
+                    tab.style.display = 'block'
+                    turns.style.display = 'block'
+                    gameOver = false
+
+                    pNames.className = ''
+                    pNames.style.display = 'none'
+                    if (playerTurn.innerHTML == player1) {
+                        playerTurn.innerHTML = player2
+
+                    } else {
+                        playerTurn.innerHTML = player1
+
+                    }
+
+                }, 3000)
+
+
+
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

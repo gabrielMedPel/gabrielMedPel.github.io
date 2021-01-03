@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Time Is It??</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #2e0d0d;
+        }
+
+        .clock {
+            width: 350px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("images/clock.png");
+            background-size: cover;
+            border: 10px solid#2e0d0d;
+            border-radius: 50%;
+            box-shadow: 0 -20px 20px rgba(255, 255, 255, 0.05),
+                inset 0 -20px 20px rgba(255, 255, 255, 0.05),
+                0 20px 20px rgba(0, 0, 0, 0.3),
+                inset 0 20px 20px rgba(0, 0, 0, 0.3);
+
+
+        }
+
+        .clock::before {
+            content: "";
+            position: absolute;
+
+            width: 15px;
+            height: 15px;
+            background: rgb(167, 167, 167);
+            border-radius: 50%;
+            z-index: 1000;
+        }
+
+        .clock .hour,
+        .clock .min,
+        .clock .sec {
+            position: absolute;
+        }
+
+        .clock .hour,
+        .hr {
+            width: 160px;
+            height: 160px;
+        }
+
+        .clock .min,
+        .mn {
+            width: 190px;
+            height: 190px;
+        }
+
+        .clock .sec,
+        .sc {
+            width: 230px;
+            height: 230px;
+        }
+
+        .hr,
+        .mn,
+        .sc {
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .hr::before {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 80px;
+            background: #ff105e;
+            z-index: 10;
+            border-radius: 6px 6px 0 0;
+
+        }
+
+        .mn::before {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 90px;
+            background: rgb(167, 167, 167);
+            z-index: 11;
+            border-radius: 6px 6px 0 0;
+
+        }
+
+        .sc::before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 150px;
+            background: rgb(167, 167, 167);
+            z-index: 12;
+            border-radius: 6px 6px 0 0;
+
+        }
+
+        input {
+            display: none
+        }
+
+
+
+        /* body{
+background-color: #555;
+background-size: 20px 20px;
+color:white;
+font-family:sans-serif;
+font-size:27px;
+} */
+        .on,
+        .off {
+            position: absolute;
+            text-align: center;
+            -webkit-text-shadow: inset 1px 1px 1px black;
+            text-shadow: inset 1px 1px 1px black;
+            width: 100%;
+        }
+
+        .on {
+            color: #bbb;
+            top: 10px;
+            -webkit-transition: all 0.1s;
+            transition: all 0.1s;
+            font-family: sans-serif
+        }
+
+        .off {
+            bottom: 5px;
+            -webkit-transition: all 0.1s;
+            transition: all 0.1s;
+            transform: scaleY(0.85);
+        }
+
+        .but {
+            background-color: #2b0000;
+            border-radius: 400px 400px 400px 400px / 400px 400px 300px 300px;
+            border-bottom-width: 0px;
+            box-shadow:
+                inset 8px 6px 5px -7px rgba(0, 0, 0, 1), inset -8px 6px 5px -7px rgba(0, 0, 0, 1), inset 0 -3px 2px -2px rgba(200, 200, 200, .5), 0 3px 3px -2px rgba(0, 0, 0, 1), inset 0 -230px 60px -200px rgba(255, 255, 255, .2), inset 0 220px 40px -200px rgba(0, 0, 0, .3);
+            display: block;
+            font-size: 27px;
+            height: 178px;
+            position: relative;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+            width: 200px;
+        }
+
+        .back {
+            background-color: rgb(32, 9, 9);
+            background-image:
+                -webkit-linear-gradient(0deg, transparent 30%, transparent 70%), -webkit-linear-gradient(0deg, rgba(150, 150, 150, 0) 30%, rgba(150, 150, 150, .1) 50%, rgba(150, 150, 150, 0) 70%);
+            border-radius: 105px;
+            box-shadow:
+                30px 30px 30px -20px rgba(0, 0, 0, .3), -30px 30px 30px -20px rgba(0, 0, 0, .3), 0 30px 30px 0px rgba(0, 0, 0, .3), inset 0 -1px 0 0 #333;
+            box-sizing: border-box;
+            height: 210px;
+            padding: 4px 4px;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+            width: 210px;
+        }
+
+
+        .round {
+            background: black;
+            background: -webkit-linear-gradient(270deg, rgb(95, 50, 50), rgb(73, 7, 7));
+            border-radius: 130px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            box-shadow:
+                0px 0px 0px 8px rgba(0, 0, 0, .1), 0px 0px 3px 1px rgba(0, 0, 0, 1), inset 0 8px 3px -8px rgba(255, 255, 255, .4);
+            height: 260px;
+            /* margin:30px auto; */
+            padding: 25px;
+            width: 260px;
+            position: relative;
+            left: -100px;
+        }
+
+        input:checked+.back .on,
+        input:checked+.back .off {
+            text-shadow: inset 1px 1px 1px black;
+        }
+
+        input:checked+.back .on {
+            color: #999;
+            top: 10px;
+            -webkit-transform: scaleY(0.85);
+            transform: scaleY(0.85);
+        }
+
+        input:checked+.back .off {
+            color: #bbb;
+            bottom: 5px;
+            -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+        }
+
+        input:checked+.back .but {
+            background: #2b0000;
+            background-image: -webkit-radial-gradient(50% 15%, circle closest-corner, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0));
+            border-radius: 400px 400px 400px 400px / 300px 300px 400px 400px;
+            box-shadow:
+                inset 8px -4px 5px -7px rgba(0, 0, 0, 1), inset -8px -4px 5px -7px rgba(0, 0, 0, 1), 0 -3px 8px -4px rgba(250, 250, 250, .4), inset 0 3px 4px -2px rgba(10, 10, 10, 1), inset 0 280px 40px -200px rgba(0, 0, 0, .2), inset 0 -200px 40px -200px rgba(180, 180, 180, .2);
+            margin-top: 20px;
+        }
+
+        input:checked+.back {
+            background-image:
+                -webkit-linear-gradient(90deg, black 30%, transparent 70%), -webkit-linear-gradient(180deg, rgba(250, 250, 250, 0) 0%, rgba(250, 250, 250, .4) 50%, rgba(150, 150, 150, 0) 100%);
+            box-shadow:
+                30px 30px 30px -20px rgba(0, 0, 0, .1), -30px 30px 30px -20px rgba(0, 0, 0, .1), 0 30px 30px 0px rgba(0, 0, 0, .2), inset 0 1px 2px 0 rgba(0, 0, 0, .6);
+            padding: 2px 4px;
+        }
+
+        .l,
+        .r {
+            margin: 0 auto;
+            text-align: center
+        }
+
+        .round,
+        #onoff,
+        .back,
+        .but,
+        .on,
+        .off {
+            user-select: none
+        }
+
+        .clock2 {
+            position: relative;
+            /* top: 50%;
+            left: 50%; */
+            transform: translateX(-50%) translateY(-50%);
+            color: #00eeff;
+            background: rgb(26, 14, 14);
+            font-size: 60px;
+            font-family: Orbitron;
+            letter-spacing: 7px;
+            text-shadow: 0 0 20px cyan;
+            border: 2px dotted rgb(34, 94, 102);
+
+
+
+        }
+
+        #anaDigi {
+            width: 200px;
+            height: 100px;
+            position: absolute;
+            bottom: 50px;
+            left: 100px;
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .ad {
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(66, 66, 66);
+            font-weight: 600;
+            background-color: rgb(59, 21, 21);
+            width: 100px;
+            height: 20px;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 2px;
+            border-radius: 10px;
+            box-shadow: 5px 0 10px black;
+            cursor: pointer;
+        }
+
+        .adOn {
+            color: cyan;
+            text-shadow: 0 0 10px rgb(152, 255, 255);
+        }
+
+        #digiClock {
+            visibility: hidden;
+        }
+
+        #anaClock {
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=round><input type=checkbox onclick="enableWatch()" id=onoff name=onoff />
+        <div class=back><label class=but for=onoff><span class=on>0</span><span class=off>I</span></label></div>
+    </div>
+    <div id="anaDigi">
+        <div id="analog" class="ad adOn" onclick="toAnalog()">ANALOG</div><br>
+        <div id="digital" class="ad" onclick="toDigital()">DIGITAL</div>
+
+    </div>
+    <div id="anaClock" class="clock">
+        <div id="player"></div>
+        <div class="hour">
+            <div class="hr" id="hr"></div>
+        </div>
+        <div class="min">
+            <div class="mn" id="mn"></div>
+        </div>
+        <div class="sec">
+            <div class="sc" id="sc"></div>
+        </div>
+    </div>
+
+    <div id="digiClock" class="clock2" onload="showTime()"></div>
+
+
+
+
+
+    <script>
+        var digiClock = document.getElementById("digiClock")
+        var anaClock = document.getElementById("anaClock")
+        var currentClock = 1
+        const deg = 6
+        const hr = document.querySelector('#hr')
+        const mn = document.querySelector('#mn')
+        const sc = document.querySelector('#sc')
+
+        setInterval(() => {
+            let day = new Date()
+            let hh = day.getHours() * 30
+            let mm = day.getMinutes() * deg
+            let ss = day.getSeconds() * deg
+
+            hr.style.transform = 'rotateZ(' + ((hh) + (mm / 12)) + 'deg)'
+            mn.style.transform = 'rotateZ(' + mm + 'deg)'
+            sc.style.transform = 'rotateZ(' + (ss) + 'deg)'
+
+        })
+
+        function enableWatch() {
+            var checkBox = document.getElementById('onoff')
+            if (currentClock == 1) {
+                if (checkBox.checked == true) {
+                    anaClock.style.visibility = 'visible'
+                    player.innerHTML = "<audio id='sfx' autoplay loop src='sounds/sfx2.wav'></audio>"
+                    sfx.volume = 0.5
+                } else {
+                    anaClock.style.visibility = 'hidden'
+
+                    sfx.volume = 0
+                }
+            } else {
+                if (checkBox.checked == true) {
+                    digiClock.style.visibility = 'visible'
+                    player.innerHTML = "<audio id='sfx' autoplay loop src='sounds/sfx.wav'></audio>"
+                    sfx.volume = 0.5
+                } else {
+                    digiClock.style.visibility = 'hidden'
+
+                    sfx.volume = 0
+                }
+            }
+
+
+
+
+        }
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours(); // 0 - 23
+            var m = date.getMinutes(); // 0 - 59
+            var s = date.getSeconds(); // 0 - 59
+            var session = "AM";
+
+            if (h == 0) {
+                h = 12;
+            }
+
+            if (h > 12) {
+                h = h - 12;
+                session = "PM";
+            }
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            var time = h + ":" + m + ":" + s + " " + session;
+            digiClock.innerText = time;
+            digiClock.textContent = time;
+
+            setTimeout(showTime, 1000);
+
+        }
+
+        showTime();
+
+        function toAnalog() {
+            digital.classList.remove('adOn')
+            analog.classList.add('adOn')
+            currentClock = 1
+            anaClock.style.visibility = 'hidden'
+            digiClock.style.visibility = 'hidden'
+
+            enableWatch()
+        }
+
+        function toDigital() {
+            currentClock = 2
+            analog.classList.remove('adOn')
+            digital.classList.add('adOn')
+            anaClock.style.visibility = 'hidden'
+            digiClock.style.visibility = 'hidden'
+
+            enableWatch()
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
